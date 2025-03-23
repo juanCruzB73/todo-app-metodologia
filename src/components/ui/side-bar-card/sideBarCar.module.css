@@ -1,0 +1,38 @@
+.sideBarCardMainContainer{
+    display: flex;
+    flex-direction: column;
+}
+.sideBarButtons{
+    display: flex;
+    color: white;
+    width: 80%;
+    max-height: 10%;
+    padding: 1rem;
+}
+.sideBarButtons h3{
+    margin-left:.8rem;
+}
+.sideBarCardhideMore{
+    display: none;
+}
+.sideBarCardSeeMore{
+    display: flex;
+    align-items: center;
+}
+.sideBarCardDateInfo{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: .5rem 2rem;
+    font-size: .8rem;
+}
+.sideBarSeeMoreButtons{
+    display: flex;
+    flex-direction: column;
+    margin: .5rem;
+}
+.sideBarSeeMoreButtons button{
+    background-color: transparent;
+    font-size: 1rem;
+    border: none;
+}

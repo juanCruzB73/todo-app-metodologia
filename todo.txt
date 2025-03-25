@@ -1,0 +1,3 @@
+fix styles sidebar backlogs icon
+fix width sidebar beetween pages
+hacer modales

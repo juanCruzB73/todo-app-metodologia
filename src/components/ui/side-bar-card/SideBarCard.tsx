@@ -21,8 +21,8 @@ export const SideBarCard = () => {
                 <span>final:DD-MM-YYYY</span>
             </div>
             <div className={styles.sideBarSeeMoreButtons}>
-                <button style={{color:"white"}}><HiPencil /></button>
-                <button style={{color:"rgba(233, 11, 11, 0.747) "}}><FaRegTrashAlt /></button>
+                <HiPencil  />
+                <FaRegTrashAlt style={{color:"rgba(233, 11, 11, 0.747) "}}/>
             </div>
         </div>
       </div>

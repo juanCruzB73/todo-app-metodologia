@@ -1,0 +1,16 @@
+.modalMainContainer{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    backdrop-filter: brightness(90%) blur(2px);
+    color: red;
+}
+.modalMainContainerNotShow{
+    display: none;
+}
+.modalContainer{
+    display: flex;
+    justify-content: center;
+}

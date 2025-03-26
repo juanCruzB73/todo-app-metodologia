@@ -3,7 +3,6 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
 }
 .taskScreenContentMainContainer{
     display: flex;
@@ -18,10 +17,25 @@
     height: 100%;
 }
 .taskScreenTitle{
+    display: flex;
     background-color: #05162F;
     color: white;
     width: 100%;
-    height: 10%;
+    height: 10%
+    
+}
+.taskScreenTitle button{
+    max-width: 30vw;
+    align-self: center;
+    margin: 1rem;
+    padding: .5rem;
+    background-color: white;
+    font-size: 1rem;
+    border-radius: .5rem;
+    border: none;
+    display: flex;
+    align-self: center;
+    justify-content: space-evenly;
 }
 .taskScreenTitle h2{
     margin: 1rem;
@@ -40,11 +54,13 @@
     padding: 1rem;
     color: white;
     min-height: 70%;
+    max-height: 70%;
     width: 80%;
-    margin: 2rem;
+    margin: 1rem;
     display: flex;
     align-items: center;
     flex-direction: column;
+    overflow-y: auto;
 }
 .taskScreenCardContainer{
     display: flex;
@@ -54,13 +70,31 @@
     align-items: center;
 
 }
+@media (min-width: 768px){
+    .taskScreenContentMainContainer{
+        width: 100%;
+        height: 100%;
+    }
+    .taskScreenContent{
+        min-width: 70%;
+        height: 100%;
+    }
+    .taskScreenTitle button{
+
+    }
+}
 @media (min-width: 1200px){
     .taskScreenBoardsBackground{
         flex-direction:row;
         align-items: center;
     }
-    .taskScreenBoard{
-        height: 85%;
-        width: 50%;
+    .taskScreenContentMainContainer{
+        min-width: 70%;
+        height: 100%;
     }
+    .taskScreenContent{
+        min-width: 80%;
+        height: 100%;
+    }
+    
 }

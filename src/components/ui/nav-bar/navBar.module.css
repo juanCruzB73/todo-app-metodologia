@@ -4,7 +4,7 @@
     background-color: #00232A;
     align-items: center;
     color: white;
-    height: 10%;
+    min-height: 10%;
     max-width: 100%;
 }
 .navBarMainContainer svg{

@@ -11,7 +11,7 @@ export const popUpStore = create<IPopUpStore>(
   devtools(
     (set) => ({
       //variables
-      popUps: [{ name: "hamburgerbutton", popUpState: false }],
+      popUps: [{ name: "hamburgerbutton", popUpState: false },{ name: "createeditsprint", popUpState: false }],
 
       // Methods 
       setChangePopUpStatus: (popUpNameIn) =>

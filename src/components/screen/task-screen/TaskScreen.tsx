@@ -12,11 +12,17 @@ export const TaskScreen = () => {
       <div className={styles.taskScreenContentMainContainer}>
         <SideBar sidebarStatus={popUps[0].popUpState} />
         <div className={styles.taskScreenContent}>
-            <div className={styles.taskScreenTitle}><h2>Sprint name</h2></div>
+            <div className={styles.taskScreenTitle}>
+              <h2>Sprint name</h2>
+              <button>Add Todo</button>
+            </div>
             <div className={styles.taskScreenBoardsBackground}>
               <div className={styles.taskScreenBoard}>
                 <h2>TODO</h2>
                 <div className={styles.taskScreenCardContainer}>
+                  <TaskCard/>
+                  <TaskCard/>
+                  <TaskCard/>
                   <TaskCard/>
                   <TaskCard/>
                   <TaskCard/>

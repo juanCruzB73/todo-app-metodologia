@@ -19,9 +19,18 @@
     height: 100%;
 }
 .springScreenTaskContainerTitles{
+    display: flex;
     background-color: #05162F;
     width: 100%;
     height: 10%; 
+}
+.springScreenTaskContainerTitles button{
+    align-self: center;
+    max-width: 5rem;
+    padding: .3rem;
+    background-color: white;
+    border: none;
+    border-radius: .3rem;
 }
 .springScreenTaskContainerTitles h2,h4{
     margin-left: 1rem;

@@ -34,7 +34,6 @@
     border-radius: .5rem;
     border: none;
     display: flex;
-    align-self: center;
     justify-content: space-evenly;
 }
 .taskScreenTitle h2{
@@ -79,18 +78,15 @@
         min-width: 70%;
         height: 100%;
     }
-    .taskScreenTitle button{
-
-    }
 }
 @media (min-width: 1200px){
     .taskScreenBoardsBackground{
         flex-direction:row;
-        align-items: center;
+        align-items: baseline;
     }
     .taskScreenContentMainContainer{
         min-width: 70%;
-        height: 100%;
+        height: 93%;
     }
     .taskScreenContent{
         min-width: 80%;

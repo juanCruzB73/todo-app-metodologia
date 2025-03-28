@@ -3,7 +3,7 @@ import { FiMenu } from "react-icons/fi";
 import { popUpStore } from '../../../store/PopUpsStore';
 
 export const NavBar = () => {
-
+  
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName);

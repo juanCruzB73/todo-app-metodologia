@@ -6,7 +6,10 @@ import styles from './backlogScreen.module.css';
 
 export const BackogsScreen = () => {
   const popUps = popUpStore((state)=>(state.popUps));
-    
+  const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
+  const handleTogglePopUp = (popUpName: string) => {
+    setChangePopUpStatus(popUpName); 
+  };
   return (
     <div className={styles.springScreenMainContainer}>
       <NavBar/>
@@ -14,8 +17,11 @@ export const BackogsScreen = () => {
         <SideBar sidebarStatus={popUps[0].popUpState} />
         <div className={styles.springScreenTaskContainer}>
           <div className={styles.springScreenTaskContainerTitles}>
-            <h2>Backlogs</h2>
-            <h4>Tasks in backlog</h4>
+            <div style={{marginRight:"2rem"}}>
+              <h2>Backlogs</h2>
+              <h4>Tasks in backlog</h4>
+            </div>
+            <button type='button' onClick={()=>handleTogglePopUp("createedittask")}>Añadir tarea</button>
           </div>
           <div className={styles.springScreenListTaskContainer}>
             <div className={styles.springScreenListTask}>

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools } from "zustand/middleware"; // Import devtools middleware
+import { devtools } from "zustand/middleware";
 import { IPopUp } from "../types/pop-ups/IPopUp";
 
 interface IPopUpStore {
@@ -11,7 +11,9 @@ export const popUpStore = create<IPopUpStore>(
   devtools(
     (set) => ({
       //variables
-      popUps: [{ name: "hamburgerbutton", popUpState: false },{ name: "createeditsprint", popUpState: false }],
+      popUps: [{ name: "hamburgerbutton", popUpState: false },
+        { name: "createeditsprint", popUpState: false },
+        { name: "createedittask", popUpState: false }],
 
       // Methods 
       setChangePopUpStatus: (popUpNameIn) =>

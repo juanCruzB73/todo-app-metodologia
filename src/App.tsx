@@ -11,8 +11,8 @@ export const App = ()=> {
   return (
     <>
       <AppRouter/>
-      <CreateUpdate modalStatus={popUps[1].popUpState} />
-      <CreateUpdateTask modalStatus={popUps[2].popUpState}/>
+      {popUps[1].popUpState&&<CreateUpdate modalStatus={popUps[1].popUpState} />}
+      {popUps[2].popUpState&&<CreateUpdateTask modalStatus={popUps[2].popUpState}/>}
     </>
   )
 }

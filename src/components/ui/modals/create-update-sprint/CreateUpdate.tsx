@@ -1,10 +1,10 @@
-import { FC, FormEvent } from 'react';
+import { FC, FormEvent, useEffect, useState } from 'react';
 import styles from './createUpdate.module.css';
 import { popUpStore } from '../../../../store/PopUpsStore';
 import { useForm } from '../../../../hooks/useForm';
 import { ISprint } from '../../../../types/pop-ups/sprints/ISprint';
 import { sprintStore } from '../../../../store/SprintStore';
-import { addSprint } from '../../../../http/sprints';
+import { addSprint, updateSprint } from '../../../../http/sprints';
 
 interface ICreateUpdate{
     modalStatus:boolean;
@@ -17,16 +17,24 @@ const initialState:ISprint={
     tasks:[]
 };
 
+
 export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
 
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   const activeSprint = sprintStore((state) => (state.activeSprint));
+  const setActiveSprint  = sprintStore((state) => (state.setActiveSprint ));
     
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName); 
   };
+  const [initialStateEdit,setInitialStateEdit]=useState<ISprint>({
+    name:activeSprint?activeSprint.name:"",
+    beginLine:activeSprint?activeSprint.beginLine:"",
+    deadLine:activeSprint?activeSprint.deadLine:"",
+    tasks:activeSprint?activeSprint.tasks:[]
+  });
 
-  const {name,beginLine,deadLine,onInputChange,onResetForm}=useForm<ISprint>(initialState);
+  const {name,beginLine,deadLine,onInputChange,onResetForm}=useForm<ISprint>(initialStateEdit);
 
   const handleCrate=async()=>{
     try{
@@ -37,14 +45,25 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
     }
   };
 
+  const handleUpdate=async()=>{
+    try{
+      const data:ISprint={id:activeSprint!.id,name,beginLine,deadLine,tasks:activeSprint!.tasks}
+      await updateSprint(data);
+    }catch(err){
+      console.error(err);
+    }
+  };
+
   const handleSubmit=async(e:FormEvent)=>{
     e.preventDefault();
     if(!activeSprint){
-      await handleCrate()
+      await handleCrate();
+    }else{
+      await handleUpdate();
     }
     handleTogglePopUp("createeditsprint");
   }
-
+  
   return (
     <div className={modalStatus?styles.modalMainContainer:styles.modalMainContainerNotShow}>
       <div className={styles.modalContainer}>
@@ -55,7 +74,7 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
           <input type="date" name='deadLine' value={deadLine} onChange={onInputChange}/>
           <div className={styles.sprintsModalButtons}>
             <button type='submit'>Submit</button>
-            <button type='button' onClick={() => {onResetForm();handleTogglePopUp("createeditsprint")}}>cancel</button>
+            <button type='button' onClick={() => {handleTogglePopUp("createeditsprint");setActiveSprint(null);onResetForm();}}>cancel</button>
           </div>
         </form>
       </div>

@@ -6,7 +6,8 @@ import { FaBookOpen } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { popUpStore } from '../../../store/PopUpsStore';
 import {sprintStore } from '../../../store/SprintStore';
-import { addSprint, getSprints } from '../../../http/sprints';
+import { getSprints } from '../../../http/sprints';
+
 
 interface ISideBar{
   sidebarStatus:boolean;
@@ -16,11 +17,7 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
 
   const navigate=useNavigate();
 
-  const sprints = sprintStore((state) => (state.sprints));
-  const activeSprint = sprintStore((state) => (state.activeSprint));
-  const setSprints  = sprintStore((state) => (state.setSprints ));
-  const setActiveSprint  = sprintStore((state) => (state.setActiveSprint ));
-
+  const sprints = sprintStore((state) => (state.sprints));  
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   
 
@@ -47,7 +44,7 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
         <div className={styles.sideBarListContent}>
           {
             sprints.map(sprint=>(
-              <SideBarCard key={sprint.id} sprint={sprint}/>
+              <SideBarCard key={sprint.id}  sprint={sprint}/>
             ))
           }
         </div>

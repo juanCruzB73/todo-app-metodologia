@@ -35,18 +35,11 @@
         "tasks": []
       },
       {
-        "name": "test",
+        "id": "51a3f975-2760-4c5c-bc86-8d06fee50787",
+        "name": "test edit 2",
         "beginLine": "2025-03-27",
         "deadLine": "2025-03-28",
-        "tasks": [],
-        "id": "51a3f975-2760-4c5c-bc86-8d06fee50787"
-      },
-      {
-        "name": "test2",
-        "beginLine": "2025-03-27",
-        "deadLine": "2025-03-28",
-        "tasks": [],
-        "id": "4d7dcb5d-fcac-409a-8aa6-9fc4ff4b6e74"
+        "tasks": []
       }
     ]
   }

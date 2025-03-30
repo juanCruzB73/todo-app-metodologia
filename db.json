@@ -11,35 +11,17 @@
     ]
   },
   "sprintList": {
-    "sprints": [
+    "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
+    "beginLine": "2025-03-04",
+    "deadLine": "2025-03-11",
+    "name": "Sprint 122",
+    "tasks": [
       {
-        "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
-        "beginLine": "2025-03-04",
-        "deadLine": "2025-03-11",
-        "name": "Sprint 122",
-        "tasks": [
-          {
-            "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
-            "title": "Tarea 2",
-            "description": "Estamos aca",
-            "state": "pendiente",
-            "deadLine": "2025-03-06"
-          }
-        ]
-      },
-      {
-        "id": "ada",
-        "name": "Sprint 1",
-        "beginLine": "2024-04-01",
-        "deadLine": "2024-04-15",
-        "tasks": []
-      },
-      {
-        "id": "51a3f975-2760-4c5c-bc86-8d06fee50787",
-        "name": "test edit 2",
-        "beginLine": "2025-03-27",
-        "deadLine": "2025-03-28",
-        "tasks": []
+        "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
+        "title": "Tarea 2 edit 2",
+        "description": "Estamos aca",
+        "deadLine": "2025-03-06",
+        "state": "pendiente"
       }
     ]
   }

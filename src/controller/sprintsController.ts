@@ -6,10 +6,9 @@ const API_URL = "http://localhost:3000/sprintList";
 
 export const getSprintsController=async()=>{
     const response = await fetch(API_URL);
-        const data = await response.json();
-        return sprintStore.getState().setSprints(data.sprints)
+    const data = await response.json();
+    return sprintStore.getState().setSprints(data.sprints)
 };
-
 export const addSprintController = async(sprintIn:ISprint)=>{
     try {
         const id = uuidv4();
@@ -23,7 +22,6 @@ export const addSprintController = async(sprintIn:ISprint)=>{
         console.error(error);
     }
 };
-
 export const updateSprintController = async(sprintIn:ISprint)=>{
     try {
         const response = await fetch(API_URL);
@@ -35,7 +33,6 @@ export const updateSprintController = async(sprintIn:ISprint)=>{
         
     }
 };
-
 export const deleteSprintController = async(sprintId:string)=>{
     try {
         const response = await fetch(API_URL);

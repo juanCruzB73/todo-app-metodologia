@@ -8,6 +8,7 @@ import { ISprint } from '../../../types/pop-ups/sprints/ISprint';
 import { popUpStore } from '../../../store/PopUpsStore';
 import { sprintStore } from '../../../store/SprintStore';
 import { deleteSprint } from '../../../http/sprints';
+import { useNavigate } from 'react-router-dom';
 
 
 interface ISideBarCard{
@@ -29,12 +30,14 @@ export const SideBarCard:FC<ISideBarCard> = ({sprint}) => {
       if(sprint.id) return await deleteSprint(sprint.id);
     }
 
+    const navigate=useNavigate();
+
     return (
       <div className={styles.sideBarCardMainContainer}>
         
         <div className={styles.sideBarButtons}>
             <h3><FaLayerGroup/></h3>
-            <h4 style={{cursor: "pointer"}} onClick={()=>setActiveSprint(sprint)}>{sprint.name}</h4>
+            <h4 style={{cursor: "pointer"}} onClick={()=>{setActiveSprint(sprint);navigate('/tasks')}}>{sprint.name}</h4>
             <h3 onClick={()=>setSeeMore(!seeMore)}><FaArrowDown style={{cursor: "pointer"}}/></h3>
         </div>
         <div className={seeMore?styles.sideBarCardSeeMore:styles.sideBarCardhideMore}>

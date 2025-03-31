@@ -11,17 +11,43 @@
     ]
   },
   "sprintList": {
-    "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
-    "beginLine": "2025-03-04",
-    "deadLine": "2025-03-11",
-    "name": "Sprint 122",
-    "tasks": [
+    "sprints": [
       {
-        "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
-        "title": "Tarea 2 edit 2",
-        "description": "Estamos aca",
-        "deadLine": "2025-03-06",
-        "state": "pendiente"
+        "id": "b0e3f34b-68c6-49eb-b059-ab251ed81629",
+        "beginLine": "2025-03-04",
+        "deadLine": "2025-03-11",
+        "name": "Sprint 122",
+        "tasks": [
+          {
+            "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
+            "title": "Tarea 2 edit",
+            "description": "Estamos aca",
+            "deadLine": "2025-03-06",
+            "state": "pendiente"
+          },
+          {
+            "title": "new task",
+            "description": "description task",
+            "deadLine": "2025-03-25",
+            "state": false,
+            "id": "40cbaa9b-9b59-48bd-af22-f37cc50ae356"
+          }
+        ]
+      },
+      {
+        "name": "new sprint",
+        "beginLine": "2025-03-25",
+        "deadLine": "2025-03-25",
+        "tasks": [
+          {
+            "title": "new task",
+            "description": "new task",
+            "deadLine": "2025-03-31",
+            "state": false,
+            "id": "507304ef-088d-4108-9f8c-6fb08c45d6f6"
+          }
+        ],
+        "id": "3c9cc2c4-e4c5-4078-953f-c35a4a9d4444"
       }
     ]
   }

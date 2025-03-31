@@ -6,6 +6,7 @@ import { Itask } from '../../../types/pop-ups/sprints/ITask';
 import { FC } from 'react';
 import { taskStore } from '../../../store/TaskStore';
 import { popUpStore } from '../../../store/PopUpsStore';
+import { deleteTask } from '../../../http/tasks';
 
 interface ITaskCard{
   task:Itask
@@ -18,6 +19,9 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
     const handleTogglePopUp = (popUpName: string) => {
       setChangePopUpStatus(popUpName); 
     };
+    const handleDelete=async()=>{
+      if(task.id) return await deleteTask(task.id);
+    }
 
   return (
     <div className={styles.taskCardContainer}>
@@ -25,7 +29,7 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
       <div className={styles.taskCardButtonsContainer}>
         <button style={{color:"white"}}><IoEye /></button>
         <button style={{color:"white"}} onClick={()=>{setActiveTask(task);handleTogglePopUp("createedittask")}}><HiPencil /></button>
-        <button style={{color:"rgba(233, 11, 11, 0.747) "}}><FaRegTrashAlt />   </button>
+        <button style={{color:"rgba(233, 11, 11, 0.747) "}} onClick={()=>handleDelete()}><FaRegTrashAlt />   </button>
       </div>
     </div>
   )

@@ -60,7 +60,7 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     return (
     <div className={modalStatus?styles.taskModalMainConainer:styles.taskModalMainConainerNotShow}>
         <div className={styles.taskModalContainer}>
-            <h1>Create a backlog</h1>
+            <h1>Create a Task</h1>
             <form className={styles.taskModalForm} onSubmit={handleSubmit}>
                 <input type="text" name='title' value={title} onChange={onInputChange} placeholder='title'/>
                 <input type="text" name='description' value={description} onChange={onInputChange} placeholder='description' />

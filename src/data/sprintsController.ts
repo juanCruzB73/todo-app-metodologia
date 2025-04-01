@@ -9,6 +9,12 @@ export const getSprintsController=async()=>{
     const data = await response.json();
     return sprintStore.getState().setSprints(data.sprints)
 };
+export const getSprintByIdController=async(sprintId:string)=>{
+    const response = await fetch(API_URL);
+    let data = await response.json();
+    data = data.sprints.filter((sprint:ISprint)=>sprint.id===sprintId);
+    return data;
+};
 export const addSprintController = async(sprintIn:ISprint)=>{
     try {
         const id = uuidv4();
@@ -30,7 +36,7 @@ export const updateSprintController = async(sprintIn:ISprint)=>{
         await fetch(API_URL,{method:'PUT',headers: { 'Content-Type': 'application/json' },body:JSON.stringify(data)});
         return sprintStore.getState().setUpdateSprint(sprintIn);
     } catch (error) {
-        
+      console.error(error);
     }
 };
 export const deleteSprintController = async(sprintId:string)=>{
@@ -41,6 +47,6 @@ export const deleteSprintController = async(sprintId:string)=>{
         await fetch(API_URL,{method:'PUT',headers: { 'Content-Type': 'application/json' },body:JSON.stringify(data)});
         return sprintStore.getState().setDeleteSprint(sprintId);
     } catch (error) {
-        
+       console.error(error) 
     }
 };

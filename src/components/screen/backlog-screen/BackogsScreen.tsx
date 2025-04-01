@@ -1,12 +1,26 @@
+import { useEffect } from 'react';
+import { backlogStore } from '../../../store/BacklogStore';
 import { popUpStore } from '../../../store/PopUpsStore';
+import { Itask } from '../../../types/pop-ups/sprints/ITask';
 import { BacklogCard } from '../../ui/backlog-card/BacklogCard';
 import { NavBar } from '../../ui/nav-bar/NavBar';
 import { SideBar } from '../../ui/side-bar/SideBar';
 import styles from './backlogScreen.module.css';
+import { getBacklogs } from '../../../http/backlog';
 
 export const BackogsScreen = () => {
   const popUps = popUpStore((state)=>(state.popUps));
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
+  const backlogs = backlogStore((state)=>(state.backlogs));
+  const setActiveBacklogs = backlogStore((state)=>(state.setActiveBacklogs));
+
+  useEffect(()=>{
+    const displayBacklogs=async()=>{
+      await getBacklogs();
+    }
+    displayBacklogs();
+  },[])
+
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName); 
   };
@@ -21,13 +35,13 @@ export const BackogsScreen = () => {
               <h2>Backlogs</h2>
               <h4>Tasks in backlog</h4>
             </div>
-            <button type='button' onClick={()=>handleTogglePopUp("createedittask")}>Añadir tarea</button>
+            <button type='button' onClick={()=>{handleTogglePopUp("createeditbacklog");setActiveBacklogs(null)}}>Añadir tarea</button>
           </div>
           <div className={styles.springScreenListTaskContainer}>
             <div className={styles.springScreenListTask}>
-              <BacklogCard/>
-              <BacklogCard/>
-              <BacklogCard/>
+              {backlogs.map((backlog:Itask)=>(
+                <BacklogCard key={backlog.id} backlog={backlog}/>
+              ))}
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { addTaskController, deleteTaskController, getTaskController, updateTaskController } from "../controller/taskController";
+import { addTaskController, deleteTaskController, getTaskController, updateTaskController } from "../data/taskController";
 import { Itask } from "../types/pop-ups/sprints/ITask";
 
 export const getTasks=async()=>{  

@@ -1,9 +1,16 @@
-import { addSprintController, deleteSprintController, getSprintsController,updateSprintController } from "../controller/sprintsController";
+import { addSprintController, deleteSprintController, getSprintByIdController, getSprintsController,updateSprintController } from "../data/sprintsController";
 import { ISprint } from "../types/pop-ups/sprints/ISprint";
 
 export const getSprints=async()=>{  
     try{   
         return await getSprintsController();
+    }catch(error){
+        console.error(error);
+    }
+};
+export const getSprintById=async(sprintId:string)=>{  
+    try{   
+        return await getSprintByIdController(sprintId);
     }catch(error){
         console.error(error);
     }

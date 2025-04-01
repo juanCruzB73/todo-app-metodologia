@@ -6,7 +6,7 @@ interface ITaskStore {
   tasks: Itask[];
   activeTask: Itask|null;
   setActiveTask:(activeTask:Itask|null)=>void;
-  
+  setSprints:(taskArray:Itask[])=>void;
 }
 
 export const taskStore  = create<ITaskStore>()(
@@ -15,6 +15,7 @@ export const taskStore  = create<ITaskStore>()(
       tasks: [],
       activeTask: null,
       setActiveTask: (activeTaskIn)=>set(()=>({activeTask: activeTaskIn})),
+      setSprints: (taskIn)=>set(()=>({tasks:taskIn})),
     }),
     { name: "taskStore" }
   )

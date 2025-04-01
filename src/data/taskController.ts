@@ -1,4 +1,5 @@
 import { sprintStore } from "../store/SprintStore";
+import { taskStore } from "../store/TaskStore";
 import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { Itask } from "../types/pop-ups/sprints/ITask";
 import { v4 as uuidv4 } from 'uuid';
@@ -6,9 +7,8 @@ import { v4 as uuidv4 } from 'uuid';
 const API_URL = "http://localhost:3000/sprintList";
 
 export const getTaskController=async()=>{
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    return sprintStore.getState().setSprints(data.sprints)
+    const tasks=sprintStore.getState().activeSprint!.tasks;
+    return taskStore.getState().setSprints(tasks);
 };
 
 export const addTaskController=async(taskIn:Itask)=>{

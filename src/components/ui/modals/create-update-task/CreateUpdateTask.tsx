@@ -16,12 +16,12 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     const activeTask = taskStore((state) => (state.activeTask));
     const setActiveTask = taskStore((state) => (state.setActiveTask));
 
-      const [initialStateEdit,setInitialStateEdit]=useState({
-            title:activeTask?activeTask.title:"",
-            description:activeTask?activeTask.description:"",
-            deadLine:activeTask?activeTask.deadLine:"",
-            state:activeTask?activeTask.state:false
-        });
+    const [initialStateEdit,setInitialStateEdit]=useState({
+          title:activeTask?activeTask.title:"",
+          description:activeTask?activeTask.description:"",
+          deadLine:activeTask?activeTask.deadLine:"",
+          state:activeTask?activeTask.state:false
+    });
 
     const {title,description,deadLine,onInputChange,onResetForm}=useForm(initialStateEdit);
     

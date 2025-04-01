@@ -13,7 +13,9 @@ export const popUpStore = create<IPopUpStore>(
       //variables
       popUps: [{ name: "hamburgerbutton", popUpState: false },
         { name: "createeditsprint", popUpState: false },
-        { name: "createedittask", popUpState: false }],
+        { name: "createedittask", popUpState: false },
+        { name: "createeditbacklog", popUpState: false }
+      ],
 
       // Methods 
       setChangePopUpStatus: (popUpNameIn) =>

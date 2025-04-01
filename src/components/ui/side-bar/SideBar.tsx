@@ -17,7 +17,8 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
 
   const navigate=useNavigate();
 
-  const sprints = sprintStore((state) => (state.sprints));  
+  const sprints = sprintStore((state) => (state.sprints));
+  const setActiveSprint = sprintStore((state) => (state.setActiveSprint)); 
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   
 
@@ -39,7 +40,7 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
       <button onClick={()=>{navigate('/backlogs')}}>Backlogs <FaBookOpen style={{marginLeft:"10px"}}/></button>
         <div className={styles.sideBarTitle}>
           <h2>Your sprints</h2>
-          <h3 onClick={() => {handleTogglePopUp("createeditsprint")}}><FaPlus /></h3>
+          <h3 onClick={() => {handleTogglePopUp("createeditsprint");setActiveSprint(null)}}><FaPlus /></h3>
         </div>
         <div className={styles.sideBarListContent}>
           {

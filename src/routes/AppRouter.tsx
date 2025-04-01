@@ -12,7 +12,7 @@ export const AppRouter = () => {
           <Route path="/*" element={<Navigate to={"/backlogs"}/>}/>
           <Route path="/backlogs" element={<BackogsScreen/>}/>
         
-          {activeSprint&&<Route path="/tasks" element={<TaskScreen/>}/>}
+          <Route path="/tasks" element={<TaskScreen/>}/>
         
       
         

@@ -21,8 +21,14 @@
     background-color: #05162F;
     color: white;
     width: 100%;
-    height: 10%
-    
+    height: 10% 
+}
+.taskScreenNoActiveSprint{
+    background-color: #091930;
+    color: white;
+}
+.taskScreenActiveSprint{
+    display: none;
 }
 .taskScreenTitle button{
     max-width: 30vw;

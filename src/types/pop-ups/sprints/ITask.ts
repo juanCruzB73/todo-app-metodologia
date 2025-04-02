@@ -2,6 +2,6 @@ export interface Itask{
     id?: string,
     title: string,
     description: string,
-    state: boolean,
+    state: string,
     deadLine: string
 }

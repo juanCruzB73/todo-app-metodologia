@@ -11,25 +11,25 @@
         "name": "Sprint 122",
         "tasks": [
           {
-            "id": "50699dec-3d1a-45ff-a94d-82d416eac053",
-            "title": "Tarea 2 edit",
-            "description": "Estamos aca",
-            "deadLine": "2025-03-06",
-            "state": "pendiente"
+            "id": "54af5788-0776-41fb-9ef4-cb5ede278f11",
+            "title": "new sprint",
+            "description": "test",
+            "deadLine": "2025-04-07",
+            "state": "todo"
           },
           {
-            "title": "new task",
-            "description": "description task",
-            "deadLine": "2025-03-25",
-            "state": false,
-            "id": "40cbaa9b-9b59-48bd-af22-f37cc50ae356"
+            "title": "new sprint 2",
+            "description": "test",
+            "deadLine": "2025-04-30",
+            "state": "inprogress",
+            "id": "fd408d32-92a9-4a26-b6b2-ed220ca43304"
           },
           {
-            "title": "backlog",
-            "description": "backlog",
-            "deadLine": "2025-03-31",
-            "state": false,
-            "id": "04887dfb-8ca8-42e9-a4c6-000d398a62ff"
+            "id": "45781dbc-3328-4b69-914d-4980d4caba43",
+            "title": "new sprint 3",
+            "description": "test",
+            "deadLine": "2025-04-25",
+            "state": "completed"
           }
         ]
       },
@@ -40,18 +40,11 @@
         "deadLine": "2025-03-25",
         "tasks": [
           {
-            "title": "new task",
-            "description": "new task",
-            "deadLine": "2025-03-31",
-            "state": false,
-            "id": "507304ef-088d-4108-9f8c-6fb08c45d6f6"
-          },
-          {
-            "title": "test",
+            "id": "eafcd95f-8bb6-4094-bbdf-6500f87b61e4",
+            "title": "baclog",
             "description": "test",
-            "deadLine": "2025-04-01",
-            "state": false,
-            "id": "649c2cef-c23f-45e1-aad9-23d4ef49f096"
+            "deadLine": "2025-04-10",
+            "state": "inprogress"
           }
         ]
       }

@@ -14,12 +14,13 @@ export const CreateUpdateBacklog:FC<ICreateUpdateBacklog> = ({modalStatus}) => {
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   const activeBacklog = backlogStore((state) => (state.activeBacklog));
   const setActiveBacklogs = backlogStore((state) => (state.setActiveBacklogs));
+  const [radiusState,setRadiusState]=useState("todo");
 
   const [initialStateEdit,setInitialStateEdit]=useState({
     title:activeBacklog?activeBacklog.title:"",
     description:activeBacklog?activeBacklog.description:"",
     deadLine:activeBacklog?activeBacklog.deadLine:"",
-    state:activeBacklog?activeBacklog.state:false
+    state:activeBacklog?activeBacklog.state:"todo"
   });
   
   const {title,description,deadLine,onInputChange,onResetForm}=useForm(initialStateEdit);
@@ -30,7 +31,7 @@ export const CreateUpdateBacklog:FC<ICreateUpdateBacklog> = ({modalStatus}) => {
 
   const handleCrate=async()=>{
           try{
-            const data={title,description,deadLine,state:false}
+            const data={title,description,deadLine,state:radiusState}
             await addBacklog(data);
           }catch(err){
             console.error(err);
@@ -39,7 +40,7 @@ export const CreateUpdateBacklog:FC<ICreateUpdateBacklog> = ({modalStatus}) => {
       
         const handleUpdate=async()=>{
           try{
-            const data={id:activeBacklog!.id,title,description,deadLine,state:activeBacklog!.state}
+            const data={id:activeBacklog!.id,title,description,deadLine,state:radiusState}
             await updateBacklog(data);
           }catch(err){
             console.error(err);

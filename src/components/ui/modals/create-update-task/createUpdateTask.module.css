@@ -37,6 +37,11 @@
     border: none;
     border-radius: .6rem;
 }
+.taskModalMainConainerRadius{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
 .taskModalForm button{
     padding: 1rem;
     background-color: white;

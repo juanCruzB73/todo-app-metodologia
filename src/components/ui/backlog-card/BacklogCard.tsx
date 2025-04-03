@@ -65,7 +65,7 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
             }
           </select>
         <button type='button' style={{backgroundColor:"white",border:"none",borderRadius:".5rem"}} onClick={()=>setSendTo(!sentTo)}>{!sentTo?"Sent to...":"Cancel"} <BsBoxes /></button>
-        <button type='button' style={{color:"white"}}><IoEye /></button>
+        <button type='button' style={{color:"white"}} onClick={()=>{setActiveBacklogs(backlog);handleTogglePopUp("seebacklog")}} ><IoEye /></button>
         <button type='button' onClick={()=>{handleTogglePopUp("createeditbacklog");setActiveBacklogs(backlog)}} style={{color:"white"}}><HiPencil /></button>
         <button type='button' style={{color:"rgba(233, 11, 11, 0.747) "}} onClick={()=>{backlog.id&&handleDelete(backlog.id)}}><FaRegTrashAlt /></button>
       </div>

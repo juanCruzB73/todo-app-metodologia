@@ -9,6 +9,7 @@ import { popUpStore } from '../../../store/PopUpsStore';
 import { sprintStore } from '../../../store/SprintStore';
 import { deleteSprint } from '../../../http/sprints';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 
 interface ISideBarCard{
@@ -27,7 +28,21 @@ export const SideBarCard:FC<ISideBarCard> = ({sprint}) => {
     };
 
     const handleDelete=async()=>{
-      if(sprint.id) return await deleteSprint(sprint.id);
+      Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action cannot be undone!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+          }).then(async (result) => { 
+            if (result.isConfirmed) {
+              sprint.id && await deleteSprint(sprint.id);
+              Swal.fire('Deleted!', 'The backlog Task has been removed.', 'success');
+            }
+          });
     }
 
     const navigate=useNavigate();

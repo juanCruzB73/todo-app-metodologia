@@ -2,7 +2,8 @@ import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { sprintStore } from "../store/SprintStore";
 import { v4 as uuidv4 } from 'uuid';
 
-const API_URL = "http://localhost:3000/sprintList";
+const API_URL = import.meta.env.VITE_SPRINTS_URL;
+console.log(API_URL)
 
 export const getSprintsController=async()=>{
     const response = await fetch(API_URL);
@@ -45,6 +46,7 @@ export const deleteSprintController = async(sprintId:string)=>{
         const data = await response.json();
         data.sprints = data.sprints.filter((sprint:ISprint)=>sprint.id!==sprintId);
         await fetch(API_URL,{method:'PUT',headers: { 'Content-Type': 'application/json' },body:JSON.stringify(data)});
+        if(sprintStore.getState().activeSprint?.id == sprintId) sprintStore.getState().setActiveSprint(null);
         return sprintStore.getState().setDeleteSprint(sprintId);
     } catch (error) {
        console.error(error) 

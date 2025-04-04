@@ -1,14 +1,6 @@
 {
   "backlog": {
-    "tasks": [
-      {
-        "title": "backlog 2",
-        "description": "test",
-        "deadLine": "2025-04-29",
-        "state": "todo",
-        "id": "a49d0429-7de3-43df-9c64-988252e9a09e"
-      }
-    ]
+    "tasks": []
   },
   "sprintList": {
     "sprints": [
@@ -38,21 +30,6 @@
             "description": "test",
             "deadLine": "2025-04-25",
             "state": "completed"
-          }
-        ]
-      },
-      {
-        "id": "3c9cc2c4-e4c5-4078-953f-c35a4a9d4444",
-        "name": "new sprint edit",
-        "beginLine": "2025-03-25",
-        "deadLine": "2025-03-25",
-        "tasks": [
-          {
-            "id": "eafcd95f-8bb6-4094-bbdf-6500f87b61e4",
-            "title": "baclog",
-            "description": "test",
-            "deadLine": "2025-04-10",
-            "state": "inprogress"
           }
         ]
       }

@@ -9,7 +9,7 @@ interface ISeeBacklog{
 
 export const SeeBacklog:FC<ISeeBacklog> = ({modalStatus}) => {
 
-    const activeBacklog = backlogStore((state) => (state.activeBacklog));
+    const activeBacklog = backlogStore((state) => (state.activeBacklogTasks));
     const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
     
 

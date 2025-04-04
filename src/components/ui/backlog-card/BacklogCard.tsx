@@ -11,6 +11,7 @@ import { deleteBacklog } from '../../../http/backlog';
 import { sprintStore } from '../../../store/SprintStore';
 import { ISprint } from '../../../types/pop-ups/sprints/ISprint';
 import { getSprintById, updateSprint } from '../../../http/sprints';
+import Swal from 'sweetalert2';
 
 interface IBacklogCard{
   backlog:Itask
@@ -22,16 +23,31 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
   const [selectOption,setSelectOption]=useState("");
 
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
-  const setActiveBacklogs = backlogStore((state) => (state.setActiveBacklogs));
+  const setActiveBacklogs = backlogStore((state) => (state.setActiveBacklogTasks));
   const sprints = sprintStore((state) => (state.sprints));
 
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName); 
   };
 
-  const handleDelete=async(id:string)=>{
-    deleteBacklog(id);
-  }
+  const handleDelete = async (id: string) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then(async (result) => { 
+      if (result.isConfirmed) {
+        await deleteBacklog(id);
+        Swal.fire('Deleted!', 'The backlog Task has been removed.', 'success');
+      }
+    });
+  };
+  
 
   const handleMoveBacklog=async(sprintId:string)=>{
     const sprint=await getSprintById(sprintId);

@@ -5,6 +5,7 @@ import { popUpStore } from '../../../../store/PopUpsStore';
 import { useForm } from '../../../../hooks/useForm';
 import { addTask, updateTask } from '../../../../http/tasks';
 import { taskStore } from '../../../../store/TaskStore';
+import Swal from 'sweetalert2';
 
 interface ICreateUpdateTask{
     modalStatus:boolean;
@@ -52,12 +53,27 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     
       const handleSubmit=async(e:FormEvent)=>{
         e.preventDefault();
-        if(!activeTask){
-          await handleCrate();
-        }else{
-          await handleUpdate();
-        }
-        handleTogglePopUp("createedittask")
+        Swal.fire({
+                              title: 'Do you want to submit this?',
+                              text: 'continue?',
+                              icon: 'warning',
+                              showCancelButton: true,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Yes, submit it!',
+                              cancelButtonText: 'Cancel'
+                          }).then(async(result)=>{
+                              if (result.isConfirmed){
+                                if(!activeTask){
+                                  await handleCrate();
+                                  Swal.fire('Deleted!', 'The Task has been added.', 'success');
+                                }else{
+                                  await handleUpdate();
+                                  Swal.fire('Deleted!', 'The Task has been updated.', 'success');
+                                }
+                                handleTogglePopUp("createedittask")
+                              }
+                          });
       }
 
     return (

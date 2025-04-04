@@ -15,6 +15,7 @@ export const TaskScreen = () => {
   const activeSprint = sprintStore((state) => (state.activeSprint));
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   const tasks = taskStore((state) => (state.tasks));
+  const setActiveTask = taskStore((state) => (state.setActiveTask));
   const [todoTasks,setTodoTasks]=useState<Itask[]>([]);
   const [inProgressTasks,setInProgressTasks]=useState<Itask[]>([]);
   const [completedTasks,setCompletedTask]=useState<Itask[]>([]);
@@ -27,6 +28,12 @@ export const TaskScreen = () => {
     const todo: Itask[] = [];
     const inProgress: Itask[] = [];
     const completed: Itask[] = [];
+    if(!activeSprint) {
+      setTodoTasks(todo);
+      setInProgressTasks(inProgress);
+      setCompletedTask(completed);
+      return
+    }
     const getTaskToDisplay=async()=>{
       await getTasks()
       tasks.forEach((task:Itask)=>{
@@ -46,7 +53,7 @@ export const TaskScreen = () => {
     setInProgressTasks(inProgress);
     setCompletedTask(completed);
   };
-    if(activeSprint)getTaskToDisplay();
+    getTaskToDisplay();
   },[sprints,activeSprint,tasks]);
 
   return (
@@ -56,8 +63,8 @@ export const TaskScreen = () => {
         <SideBar sidebarStatus={popUps[0].popUpState} />
         <div className={styles.taskScreenContent}>
             <div className={styles.taskScreenTitle}>
-              <h2>{activeSprint?.name}</h2>
-              <button onClick={()=>handleTogglePopUp("createedittask")}>Add Todo</button>
+              <h2>{activeSprint?activeSprint?.name:"No sprint selected"}</h2>
+              <button onClick={()=>{setActiveTask(null);handleTogglePopUp("createedittask")}}>Add Todo</button>
             </div>
             <h1 className={ !activeSprint?styles.taskScreenNoActiveSprint:styles.taskScreenActiveSprint}>Select a sprint to display the tasks</h1>
             <div className={styles.taskScreenBoardsBackground}>

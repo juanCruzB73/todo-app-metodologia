@@ -4,7 +4,7 @@ import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { Itask } from "../types/pop-ups/sprints/ITask";
 import { v4 as uuidv4 } from 'uuid';
 
-const API_URL = "http://localhost:3000/sprintList";
+const API_URL = import.meta.env.VITE_SPRINTS_URL;
 
 export const getTaskController=async()=>{
     const tasks=sprintStore.getState().activeSprint!.tasks;

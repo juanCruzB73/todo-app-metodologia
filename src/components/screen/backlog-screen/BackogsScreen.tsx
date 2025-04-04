@@ -11,8 +11,8 @@ import { getBacklogs } from '../../../http/backlog';
 export const BackogsScreen = () => {
   const popUps = popUpStore((state)=>(state.popUps));
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
-  const backlogs = backlogStore((state)=>(state.backlogs));
-  const setActiveBacklogs = backlogStore((state)=>(state.setActiveBacklogs));
+  const backlogs = backlogStore((state)=>(state.backlogTasks));
+  const setActiveBacklogs = backlogStore((state)=>(state.setActiveBacklogTasks));
 
   useEffect(()=>{
     const displayBacklogs=async()=>{

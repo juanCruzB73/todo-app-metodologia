@@ -11,12 +11,7 @@ export const AppRouter = () => {
       
           <Route path="/*" element={<Navigate to={"/backlogs"}/>}/>
           <Route path="/backlogs" element={<BackogsScreen/>}/>
-        
           <Route path="/tasks" element={<TaskScreen/>}/>
-        
-      
-        
-        
     </Routes>
   )
 }

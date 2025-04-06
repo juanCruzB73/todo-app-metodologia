@@ -53,33 +53,33 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     
       const handleSubmit=async(e:FormEvent)=>{
         e.preventDefault();
-        Swal.fire({
-                              title: 'Do you want to submit this?',
-                              text: 'continue?',
-                              icon: 'warning',
-                              showCancelButton: true,
-                              confirmButtonColor: '#3085d6',
-                              cancelButtonColor: '#d33',
-                              confirmButtonText: 'Yes, submit it!',
-                              cancelButtonText: 'Cancel'
-                          }).then(async(result)=>{
-                              if (result.isConfirmed){
-                                if(!activeTask){
-                                  await handleCrate();
-                                  Swal.fire('Deleted!', 'The Task has been added.', 'success');
-                                }else{
-                                  await handleUpdate();
-                                  Swal.fire('Deleted!', 'The Task has been updated.', 'success');
-                                }
-                                handleTogglePopUp("createedittask")
-                              }
-                          });
+        if(!activeTask){
+          await handleCrate();
+          Swal.fire('Done!', 'The Task has been added.', 'success');
+        }else{
+          Swal.fire({
+            title: 'Do you want to submit this?',
+            text: 'continue?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, submit it!',
+            cancelButtonText: 'Cancel'
+          }).then(async(result)=>{
+              if (result.isConfirmed){
+                await handleUpdate();
+                Swal.fire('Done!', 'The Task has been updated.', 'success');
+              }
+          });
+        }
+        handleTogglePopUp("createedittask")
       }
 
     return (
       <div className={modalStatus?styles.taskModalMainConainer:styles.taskModalMainConainerNotShow}>
           <div className={styles.taskModalContainer}>
-              <h1>Create a Task</h1>
+              <h1>{activeTask?"Update task":"Create task"}</h1>
               <form className={styles.taskModalForm} onSubmit={handleSubmit}>
                   <input type="text" name='title' value={title} onChange={onInputChange} placeholder='title'/>
                   <input type="text" name='description' value={description} onChange={onInputChange} placeholder='description' />

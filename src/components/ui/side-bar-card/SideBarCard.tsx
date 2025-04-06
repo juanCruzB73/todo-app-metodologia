@@ -62,7 +62,7 @@ export const SideBarCard:FC<ISideBarCard> = ({sprint}) => {
             </div>
             <div className={styles.sideBarSeeMoreButtons}>
                 <HiPencil style={{cursor:"pointer"}} onClick={()=>{setActiveSprint(sprint);handleTogglePopUp("createeditsprint")}}/>
-                <FaRegTrashAlt onClick={handleDelete} style={{color:"rgba(233, 11, 11, 0.747)",cursor:"pointer"}}/>
+                <FaRegTrashAlt onClick={()=>{setActiveSprint(sprint);handleDelete()}} style={{color:"rgba(233, 11, 11, 0.747)",cursor:"pointer"}}/>
             </div>
         </div>
       </div>

@@ -50,33 +50,33 @@ export const CreateUpdateBacklog:FC<ICreateUpdateBacklog> = ({modalStatus}) => {
         };
         const handleSubmit=async(e:FormEvent)=>{
                 e.preventDefault();
-                Swal.fire({
-                  title: 'Do you want to submit this?',
-                  text: 'continue?',
-                  icon: 'warning',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Yes, submit it!',
-                  cancelButtonText: 'Cancel'
-              }).then(async(result)=>{
-                  if (result.isConfirmed){
-                    if(!activeBacklog){
-                      await handleCrate();
-                      Swal.fire('Done!', 'The Task has been added.', 'success');
-                    }else{
+                if(!activeBacklog){
+                  await handleCrate();
+                  Swal.fire('Done!', 'The Task has been added.', 'success');
+                }else{
+                  Swal.fire({
+                    title: 'Do you want to submit this?',
+                    text: 'continue?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, submit it!',
+                    cancelButtonText: 'Cancel'
+                }).then(async(result)=>{
+                    if (result.isConfirmed){
                       await handleUpdate();
                       Swal.fire('Done!', 'The Task has been updated.', 'success');
                     }
-                    handleTogglePopUp("createeditbacklog");
-                  }
-              });
+                });
+                }
+                handleTogglePopUp("createeditbacklog");
               }
   
   return (
     <div className={modalStatus?styles.createUpdateBacklogMainContainer:styles.createUpdateBacklogNotShow}>
         <div className={styles.createUpdateBacklogContainer}>
-          <h1>Create backlog</h1>
+          <h1>{activeBacklog?"Edit backlog task":"Create backlog task"}</h1>
           <form className={styles.createeditbacklogFormContainer} onSubmit={handleSubmit}>
             <input type="text" placeholder='title' name='title' value={title} onChange={onInputChange}/>
             <input type="text" placeholder='description' name='description' value={description} onChange={onInputChange}/>

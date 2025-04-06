@@ -57,33 +57,33 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
 
   const handleSubmit=async(e:FormEvent)=>{
     e.preventDefault();
-    Swal.fire({
-                      title: 'Do you want to submit this?',
-                      text: 'continue?',
-                      icon: 'warning',
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes, submit it!',
-                      cancelButtonText: 'Cancel'
-                  }).then(async(result)=>{
-                      if (result.isConfirmed){
-                        if(!activeSprint){
-                          await handleCrate();
-                          Swal.fire('Done!', 'The Sprint has been added.', 'success');
-                        }else{
-                          Swal.fire('Done!', 'The Sprint has been added.', 'success');
-                          await handleUpdate();
-                        }
-                        handleTogglePopUp("createeditsprint");
-                      }
-                  });
+    if(!activeSprint){
+      await handleCrate();
+      Swal.fire('Done!', 'The Sprint has been added.', 'success');
+    }else{
+      Swal.fire({
+        title: 'Do you want to submit this?',
+        text: 'continue?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, submit it!',
+        cancelButtonText: 'Cancel'
+      }).then(async(result)=>{
+        if (result.isConfirmed){
+          Swal.fire('Done!', 'The Sprint has been updated.', 'success');
+          await handleUpdate();
+        }
+      });
+    }
+    handleTogglePopUp("createeditsprint");
   }
   
   return (
     <div className={modalStatus?styles.modalMainContainer:styles.modalMainContainerNotShow}>
       <div className={styles.modalContainer}>
-        <h1>Create a sprint</h1>
+        <h1>{activeSprint?"Update Sprint":"Create Sprint"}</h1>
         <form className={styles.modalForm} onSubmit={handleSubmit}>
           <input type="text" placeholder='name' name='name' value={name} onChange={onInputChange}/>
           <input type="date" name='beginLine' value={beginLine} onChange={onInputChange}/>

@@ -16,8 +16,6 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
     const activeTask = taskStore((state) => (state.activeTask));
     const setActiveTask = taskStore((state) => (state.setActiveTask));
-    const [radiusState,setRadiusState]=useState(activeTask?activeTask.state:"todo");
-
     const [initialStateEdit,setInitialStateEdit]=useState({
           title:activeTask?activeTask.title:"",
           description:activeTask?activeTask.description:"",
@@ -29,13 +27,10 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     const handleTogglePopUp = (popUpName: string) => {
         setChangePopUpStatus(popUpName); 
     };
-    const handleRadiusChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setRadiusState(event.target.value);
-    };
 
     const handleCrate=async()=>{
         try{
-          const data={title,description,deadLine,state:radiusState}
+          const data={title,description,deadLine,state:"todo"}
           await addTask(data);
         }catch(err){
           console.error(err);
@@ -44,7 +39,7 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     
       const handleUpdate=async()=>{
         try{
-          const data={id:activeTask!.id,title,description,deadLine,state:radiusState}
+          const data={id:activeTask!.id,title,description,deadLine,state:activeTask?.state}
           await updateTask(data);
         }catch(err){
           console.error(err);
@@ -84,11 +79,7 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
                   <input type="text" name='title' value={title} onChange={onInputChange} placeholder='title'/>
                   <input type="text" name='description' value={description} onChange={onInputChange} placeholder='description' />
                   <input type="date" name='deadLine' value={deadLine} onChange={onInputChange}/>
-                  <div className={styles.taskModalMainConainerRadius}>
-                    <label key="todo"><input type="radio" name='radiusState' value="todo" checked={radiusState === "todo"} onChange={handleRadiusChange}/>To do</label>
-                    <label key="inprogress"><input type="radio" name='radiusState' value={"inprogress"} checked={radiusState === "inprogress"} onChange={handleRadiusChange}/>In progress</label>
-                    <label key="completed"><input type="radio" name='radiusState' value={"completed"} checked={radiusState === "completed"} onChange={handleRadiusChange}/>Completed</label>
-                  </div>
+                  
                   <div className={styles.taskModalButtons}>
                       <button>Send</button>
                       <button type='button' onClick={() => {onResetForm();setActiveTask(null);handleTogglePopUp("createedittask")}}>cancel</button>

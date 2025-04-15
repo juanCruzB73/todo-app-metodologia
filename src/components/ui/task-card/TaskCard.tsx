@@ -62,16 +62,18 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
     <div className={styles.taskCardContainer}>
       <div className={styles.taskCardTitle}><h3>{task.title}</h3></div>
       <div className={styles.taskCardButtonsContainer}>
-        <select name="selectOption" value={selectOption} onChange={handleSelectOption} >
-          <option value="">STATE</option>
+      <select name="selectOption" value={selectOption} onChange={handleSelectOption} className={styles.selectTaskCard}>
+          <option value="">State</option>
           <option value="todo">TODO</option>
           <option value="inprogress">IN PROGRESS</option>
           <option value="completed">COMPLETED</option>
         </select>
-        <button style={{color:"white"}} onClick={handleMoveToBacklog}><BsBoxes /> To Backlog</button>
+        <div className={styles.taskCardButtonDiv}>
+        <button style={{color:"white",minWidth:"6vw"}} onClick={handleMoveToBacklog}><BsBoxes /> To Backlog</button>
         <button style={{color:"white"}} onClick={()=>{setActiveTask(task);handleTogglePopUp("seetask")}}><IoEye /></button>
         <button style={{color:"white"}} onClick={()=>{setActiveTask(task);handleTogglePopUp("createedittask")}}><HiPencil /></button>
         <button style={{color:"rgba(233, 11, 11, 0.747) "}} onClick={()=>handleDelete()}><FaRegTrashAlt />   </button>
+        </div>
       </div>
     </div>
   )

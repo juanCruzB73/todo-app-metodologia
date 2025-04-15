@@ -52,7 +52,7 @@ export const SideBarCard:FC<ISideBarCard> = ({sprint}) => {
         
         <div className={styles.sideBarButtons}>
             <h3><FaLayerGroup/></h3>
-            <h4 style={{cursor: "pointer"}} onClick={()=>{setActiveSprint(sprint);navigate('/tasks')}}>{sprint.name}</h4>
+            <h4 style={{cursor: "pointer"}} onClick={()=>{setActiveSprint(sprint);navigate(`/tasks?sprintid=${sprint.id}`)}}>{sprint.name}</h4>
             <h3 onClick={()=>setSeeMore(!seeMore)}><FaArrowDown style={{cursor: "pointer"}}/></h3>
         </div>
         <div className={seeMore?styles.sideBarCardSeeMore:styles.sideBarCardhideMore}>

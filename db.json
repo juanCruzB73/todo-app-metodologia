@@ -30,21 +30,21 @@
             "title": "new sprint",
             "description": "test",
             "deadLine": "2025-04-07",
-            "state": "todo"
+            "state": "inprogress"
           },
           {
             "title": "new sprint 2",
             "description": "test",
             "deadLine": "2025-04-30",
-            "state": "inprogress",
+            "state": "completed",
             "id": "fd408d32-92a9-4a26-b6b2-ed220ca43304"
           },
           {
             "id": "45781dbc-3328-4b69-914d-4980d4caba43",
-            "title": "new sprint 3",
+            "title": "new sprint 3 edit",
             "description": "test",
             "deadLine": "2025-04-25",
-            "state": "completed"
+            "state": "todo"
           }
         ]
       },
@@ -52,7 +52,15 @@
         "name": "sprint test",
         "beginLine": "2025-04-05",
         "deadLine": "2025-04-11",
-        "tasks": [],
+        "tasks": [
+          {
+            "title": "todo",
+            "description": "asdw",
+            "deadLine": "2025-04-14",
+            "state": "inprogress",
+            "id": "20e58826-dc42-4549-9485-ae7f6fddf764"
+          }
+        ],
         "id": "ba168861-64dd-4c86-a41b-efbf3edc9624"
       },
       {
@@ -60,15 +68,7 @@
         "name": "asdw edit",
         "beginLine": "2025-04-10",
         "deadLine": "2025-04-23",
-        "tasks": [
-          {
-            "title": "asdw",
-            "description": "asdw",
-            "deadLine": "2025-04-23",
-            "state": "completed",
-            "id": "61529118-b3cc-4ee6-a434-e6c29308bcb5"
-          }
-        ]
+        "tasks": []
       }
     ]
   }

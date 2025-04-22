@@ -53,7 +53,7 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
     const sprint=await getSprintById(sprintId);
     appenBacklog(sprint)
     await updateSprint(sprint[0]);
-    backlog.id&&await deleteBacklog(backlog.id);
+    backlog._id&&await deleteBacklog(backlog._id);
   }
   const appenBacklog=(sprint:ISprint[])=>{
     sprint[0].tasks.push(backlog);
@@ -64,7 +64,6 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
     const value=event.target.value;
     if (value=="") return
     setSelectOption(value);
-    console.log(selectOption);
     await handleMoveBacklog(value)    
   }
 
@@ -76,14 +75,14 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
           <option value="">Select Sprint</option>
             {
               sprints.map((sprint:ISprint)=>(
-                <option key={sprint.id} value={sprint.id}>{sprint.name}</option>
+                <option key={sprint._id} value={sprint._id}>{sprint.title}</option>
               ))
             }
           </select>
         <button type='button' style={{backgroundColor:"white",border:"none",borderRadius:".5rem"}} onClick={()=>setSendTo(!sentTo)}>{!sentTo?"Sent to...":"Cancel"} <BsBoxes /></button>
         <button type='button' style={{color:"white"}} onClick={()=>{setActiveBacklogs(backlog);handleTogglePopUp("seebacklog")}} ><IoEye /></button>
         <button type='button' onClick={()=>{handleTogglePopUp("createeditbacklog");setActiveBacklogs(backlog)}} style={{color:"white"}}><HiPencil /></button>
-        <button type='button' style={{color:"rgba(233, 11, 11, 0.747) "}} onClick={()=>{backlog.id&&handleDelete(backlog.id)}}><FaRegTrashAlt /></button>
+        <button type='button' style={{color:"rgba(233, 11, 11, 0.747) "}} onClick={()=>{backlog._id&&handleDelete(backlog._id)}}><FaRegTrashAlt /></button>
       </div>
     </div>
   )

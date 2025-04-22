@@ -19,8 +19,7 @@ export const BackogsScreen = () => {
       await getBacklogs();
     }
     displayBacklogs();
-  },[])
-
+  },[backlogs])
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName); 
   };
@@ -40,7 +39,7 @@ export const BackogsScreen = () => {
           <div className={styles.springScreenListTaskContainer}>
             <div className={styles.springScreenListTask}>
               {backlogs.map((backlog:Itask)=>(
-                <BacklogCard key={backlog.id} backlog={backlog}/>
+                <BacklogCard key={backlog._id} backlog={backlog}/>
               ))}
             </div>
           </div>

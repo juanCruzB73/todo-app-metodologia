@@ -21,11 +21,11 @@ export const backlogStore  = create<IBacklogStore>()(
       setBacklogTasks: (backlogIn)=>set(()=>({backlogTasks:backlogIn})),
       setAddNewBacklogTasks:(backlogIn)=>set(((state)=>({backlogTasks:[...state.backlogTasks,backlogIn]}))),
       setUpdateBacklogTasks:(backlogIn)=>set((state)=>{
-        const backlogArr=state.backlogTasks.map((backlog:Itask)=>backlog.id===backlogIn.id?backlogIn:backlog);
+        const backlogArr=state.backlogTasks.map((backlog:Itask)=>backlog._id===backlogIn._id?backlogIn:backlog);
         return {backlogTasks:backlogArr};
       }),
       setDeleteBacklogTasks:(backlogIn)=>set((state)=>{
-        const sprintArr=state.backlogTasks.filter((sprint:Itask)=>sprint.id!==backlogIn);
+        const sprintArr=state.backlogTasks.filter((sprint:Itask)=>sprint._id!==backlogIn);
         return {backlogTasks:sprintArr};
       })
     }),

@@ -45,7 +45,7 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
         <div className={styles.sideBarListContent}>
           {
             sprints.map(sprint=>(
-              <SideBarCard key={sprint.id}  sprint={sprint}/>
+              <SideBarCard key={sprint._id}  sprint={sprint}/>
             ))
           }
         </div>

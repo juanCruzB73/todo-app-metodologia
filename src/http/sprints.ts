@@ -1,9 +1,15 @@
-import { addSprintController, deleteSprintController, getSprintByIdController, getSprintsController,updateSprintController } from "../data/sprintsController";
 import { ISprint } from "../types/pop-ups/sprints/ISprint";
+import { sprintStore } from "../store/SprintStore";
+import { addSprintController, deleteSprintController, getSprintByIdController, getSprintsController,updateSprintController } from "../data/sprintsController";
+
+
+const API_URL = import.meta.env.VITE_SPRINTS_URL;
 
 export const getSprints=async()=>{  
     try{   
-        return await getSprintsController();
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        return sprintStore.getState().setSprints(data.sprints);
     }catch(error){
         console.error(error);
     }

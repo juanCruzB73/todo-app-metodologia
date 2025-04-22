@@ -3,7 +3,6 @@ import { sprintStore } from "../store/SprintStore";
 import { v4 as uuidv4 } from 'uuid';
 
 const API_URL = import.meta.env.VITE_SPRINTS_URL;
-console.log(API_URL)
 
 export const getSprintsController=async()=>{
     const response = await fetch(API_URL);

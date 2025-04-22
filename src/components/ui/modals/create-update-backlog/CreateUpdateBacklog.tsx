@@ -42,7 +42,7 @@ export const CreateUpdateBacklog:FC<ICreateUpdateBacklog> = ({modalStatus}) => {
       
         const handleUpdate=async()=>{
           try{
-            const data={id:activeBacklog!.id,title,description,deadLine,state:radiusState}
+            const data={_id:activeBacklog!._id,title,description,deadLine,state:radiusState}
             await updateBacklog(data);
           }catch(err){
             console.error(err);

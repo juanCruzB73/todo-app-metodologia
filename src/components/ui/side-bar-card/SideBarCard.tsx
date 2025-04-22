@@ -39,20 +39,20 @@ export const SideBarCard:FC<ISideBarCard> = ({sprint}) => {
             cancelButtonText: 'Cancel'
           }).then(async (result) => { 
             if (result.isConfirmed) {
-              sprint.id && await deleteSprint(sprint.id);
+              sprint._id && await deleteSprint(sprint._id);
               Swal.fire('Deleted!', 'The backlog Task has been removed.', 'success');
             }
           });
     }
 
     const navigate=useNavigate();
-
+    
     return (
       <div className={styles.sideBarCardMainContainer}>
         
         <div className={styles.sideBarButtons}>
             <h3><FaLayerGroup/></h3>
-            <h4 style={{cursor: "pointer"}} onClick={()=>{setActiveSprint(sprint);navigate(`/tasks?sprintid=${sprint.id}`)}}>{sprint.name}</h4>
+            <h4 style={{cursor: "pointer"}} onClick={()=>{setActiveSprint(sprint);navigate(`/tasks?sprintid=${sprint._id}`)}}>{sprint.title}</h4>
             <h3 onClick={()=>setSeeMore(!seeMore)}><FaArrowDown style={{cursor: "pointer"}}/></h3>
         </div>
         <div className={seeMore?styles.sideBarCardSeeMore:styles.sideBarCardhideMore}>

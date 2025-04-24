@@ -21,11 +21,11 @@ export const sprintStore  = create<ISprintStore>()(
       setSprints: (sprintsIn)=>set(()=>({sprints:sprintsIn})),
       setAddNewSprint:(sprintsIn)=>set(((state)=>({sprints:[...state.sprints,sprintsIn]}))),
       setUpdateSprint:(sprintsIn)=>set((state)=>{
-        const sprintArr=state.sprints.map((sprint:ISprint)=>sprint.id===sprintsIn.id?sprintsIn:sprint);
+        const sprintArr=state.sprints.map((sprint:ISprint)=>sprint._id===sprintsIn._id?sprintsIn:sprint);
         return {sprints:sprintArr};
       }),
       setDeleteSprint:(sprintId)=>set((state)=>{
-        const sprintArr=state.sprints.filter((sprint:ISprint)=>sprint.id!==sprintId);
+        const sprintArr=state.sprints.filter((sprint:ISprint)=>sprint._id!==sprintId);
         return {sprints:sprintArr};
       })
     }),

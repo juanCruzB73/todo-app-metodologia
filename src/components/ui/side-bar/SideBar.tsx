@@ -31,7 +31,6 @@ export const SideBar:FC<ISideBar> = ({sidebarStatus}) => {
       await getSprints();
     }
     callSprints();
-    
   },[])
 
   return (

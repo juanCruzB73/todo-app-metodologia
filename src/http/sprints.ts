@@ -1,6 +1,6 @@
 import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { sprintStore } from "../store/SprintStore";
-import { addSprintController, deleteSprintController, getSprintByIdController, getSprintsController,updateSprintController } from "../data/sprintsController";
+import { addSprintController, deleteSprintController,updateSprintController } from "../data/sprintsController";
 
 
 const API_URL = import.meta.env.VITE_SPRINTS_URL;
@@ -15,29 +15,38 @@ export const getSprints=async()=>{
     }
 };
 export const getSprintById=async(sprintId:string)=>{  
-    try{   
-        return await getSprintByIdController(sprintId);
+    try{
+        const response = await fetch(`${API_URL}/${sprintId}`);
+        let data = await response.json();
+        return sprintStore.getState().setActiveSprint(data.sprint);
     }catch(error){
         console.error(error);
     }
 };
 export const addSprint=async(sprintIn:ISprint)=>{
     try{    
-        return await addSprintController(sprintIn);
+        const response = await fetch(API_URL,{method:'POST',headers: { 'Content-Type': 'application/json' },body:JSON.stringify(sprintIn)});
+        let data = await response.json();
+        return sprintStore.getState().setAddNewSprint(data.sprint);
     }catch(error){
         console.error(error);
     }
 };
 export const updateSprint=async(sprintIn:ISprint)=>{
     try{    
-        return await updateSprintController(sprintIn);
+        const response = await fetch(`${API_URL}/${sprintIn._id}`,{method:'PUT',headers: { 'Content-Type': 'application/json' },body:JSON.stringify(sprintIn)});
+        const data = await response.json();
+        return sprintStore.getState().setUpdateSprint(data.sprint);
     }catch(error){
         console.error(error);
     }
 };
 export const deleteSprint=async(sprintId:string)=>{
     try{    
-        return await deleteSprintController(sprintId);
+        const response = await fetch(`${API_URL}/${sprintId}`,{method:'DELETE',headers: { 'Content-Type': 'application/json' }});
+        const data = await response.json();
+        if(sprintStore.getState().activeSprint?._id == sprintId) sprintStore.getState().setActiveSprint(null);
+        return sprintStore.getState().setDeleteSprint(sprintId);
     }catch(error){
         console.error(error);
     }

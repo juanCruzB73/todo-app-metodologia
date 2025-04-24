@@ -7,9 +7,9 @@ import { NavBar } from '../../ui/nav-bar/NavBar';
 import { SideBar } from '../../ui/side-bar/SideBar';
 import { TaskCard } from '../../ui/task-card/TaskCard';
 import styles from './taskScreen.module.css';
-import { getTasks } from '../../../http/tasks';
+import { getTasksBySprint } from '../../../http/tasks';
 import { useSearchParams } from 'react-router-dom';
-import { getSprintByIdController } from '../../../data/sprintsController';
+import { getSprintById } from '../../../http/sprints';
 
 export const TaskScreen = () => {
   const popUps = popUpStore((state)=>(state.popUps));
@@ -23,7 +23,6 @@ export const TaskScreen = () => {
   const [inProgressTasks,setInProgressTasks]=useState<Itask[]>([]);
   const [completedTasks,setCompletedTask]=useState<Itask[]>([]);
 
-
   const [searchParams] = useSearchParams();
   const sprintId = searchParams.get("sprintid")
 
@@ -35,21 +34,24 @@ export const TaskScreen = () => {
     const todo: Itask[] = [];
     const inProgress: Itask[] = [];
     const completed: Itask[] = [];
+    
+
     if(!activeSprint && !sprintId) {
       setTodoTasks(todo);
       setInProgressTasks(inProgress);
       setCompletedTask(completed);
       return
-    }
+    };
+    
     if(!activeSprint && sprintId){
       const setActive=async()=>{
-        const data=await getSprintByIdController(sprintId);
-        setActiveSprint(data[0])
+        await getSprintById(sprintId);
       }
       setActive();
-    }
+    };
+
     const getTaskToDisplay=async()=>{
-      await getTasks()
+      await getTasksBySprint(activeSprint!._id)
       tasks.forEach((task:Itask)=>{
         switch(task.state){
           case "todo":
@@ -63,12 +65,14 @@ export const TaskScreen = () => {
           break;
         };
     });
+
     setTodoTasks(todo);
     setInProgressTasks(inProgress);
     setCompletedTask(completed);
+    
   };
     getTaskToDisplay();
-  },[sprints,activeSprint,tasks]);
+  },[activeSprint,sprintId,tasks]);
 
   return (
     <div className={styles.taskScreenMainContainer}>
@@ -77,7 +81,7 @@ export const TaskScreen = () => {
         <SideBar sidebarStatus={popUps[0].popUpState} />
         <div className={styles.taskScreenContent}>
             <div className={styles.taskScreenTitle}>
-              <h2>{activeSprint?activeSprint?.name:"No sprint selected"}</h2>
+              <h2>{activeSprint?activeSprint?.title:"No sprint selected"}</h2>
               <button onClick={()=>{setActiveTask(null);handleTogglePopUp("createedittask")}}>Add Todo</button>
               {/*<form action="">
                 {backlogTasks.map(task=>
@@ -92,19 +96,19 @@ export const TaskScreen = () => {
               <div className={styles.taskScreenBoard}>
                 <h2>TODO</h2>
                 <div className={styles.taskScreenCardContainer}>
-                  {todoTasks.map((task:Itask)=><TaskCard task={task} key={task.id}/>)}
+                  {todoTasks.map((task:Itask)=><TaskCard task={task} key={task._id}/>)}
                 </div>
               </div>
               <div className={styles.taskScreenBoard}> 
                 <h2>IN PROGRESS</h2>
                 <div className={styles.taskScreenCardContainer}>
-                  {inProgressTasks.map((task:Itask)=><TaskCard task={task} key={task.id}/>)}
+                  {inProgressTasks.map((task:Itask)=><TaskCard task={task} key={task._id}/>)}
                 </div>
               </div>
               <div className={styles.taskScreenBoard}>
                 <h2>COMPLETED</h2>
                 <div className={styles.taskScreenCardContainer}>
-                  {completedTasks.map((task:Itask)=><TaskCard task={task} key={task.id}/>)}
+                  {completedTasks.map((task:Itask)=><TaskCard task={task} key={task._id}/>)}
                 </div>
               </div>
             <div>

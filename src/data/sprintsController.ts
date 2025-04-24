@@ -12,7 +12,7 @@ export const getSprintsController=async()=>{
 export const getSprintByIdController=async(sprintId:string)=>{
     const response = await fetch(API_URL);
     let data = await response.json();
-    data = data.sprints.filter((sprint:ISprint)=>sprint.id===sprintId);
+    data = data.sprints.filter((sprint:ISprint)=>sprint._id===sprintId);
     return data;
 };
 export const addSprintController = async(sprintIn:ISprint)=>{

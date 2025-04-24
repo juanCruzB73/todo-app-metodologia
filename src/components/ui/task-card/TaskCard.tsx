@@ -38,7 +38,7 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
             cancelButtonText: 'Cancel'
           }).then(async (result) => { 
             if (result.isConfirmed) {
-              if(task.id) await deleteTask(task.id);
+              if(task._id) await deleteTask(task._id);
               Swal.fire('Deleted!', 'The Task has been removed.', 'success');
             }
           });
@@ -56,7 +56,7 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
     const handleMoveToBacklog=async()=>{
       console.log("fired")
         await addBacklog(task)
-        task.id && await deleteTask(task.id)
+        task._id && await deleteTask(task._id)
     };
   return (
     <div className={styles.taskCardContainer}>

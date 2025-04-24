@@ -12,7 +12,7 @@ interface ICreateUpdate{
 };
 
 const initialState:ISprint={
-    name:"",
+    title:"",
     beginLine:"",
     deadLine:"",
     tasks:[]
@@ -29,17 +29,17 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
     setChangePopUpStatus(popUpName); 
   };
   const [initialStateEdit,setInitialStateEdit]=useState<ISprint>({
-    name:activeSprint?activeSprint.name:"",
+    title:activeSprint?activeSprint.title:"",
     beginLine:activeSprint?activeSprint.beginLine:"",
     deadLine:activeSprint?activeSprint.deadLine:"",
     tasks:activeSprint?activeSprint.tasks:[]
   });
 
-  const {name,beginLine,deadLine,onInputChange,onResetForm}=useForm<ISprint>(initialStateEdit);
+  const {title,beginLine,deadLine,onInputChange,onResetForm}=useForm<ISprint>(initialStateEdit);
 
   const handleCrate=async()=>{
     try{
-      const data={name,beginLine,deadLine,tasks:[]}
+      const data={title,beginLine,deadLine,tasks:[]}
       await addSprint(data);
     }catch(err){
       console.error(err);
@@ -48,7 +48,7 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
 
   const handleUpdate=async()=>{
     try{
-      const data:ISprint={id:activeSprint!.id,name,beginLine,deadLine,tasks:activeSprint!.tasks}
+      const data:ISprint={_id:activeSprint!._id,title,beginLine,deadLine,tasks:activeSprint!.tasks}
       await updateSprint(data);
     }catch(err){
       console.error(err);
@@ -85,7 +85,7 @@ export const CreateUpdate:FC<ICreateUpdate> = ({modalStatus}) => {
       <div className={styles.modalContainer}>
         <h1>{activeSprint?"Update Sprint":"Create Sprint"}</h1>
         <form className={styles.modalForm} onSubmit={handleSubmit}>
-          <input type="text" placeholder='name' name='name' value={name} onChange={onInputChange}/>
+          <input type="text" placeholder='title' name='title' value={title} onChange={onInputChange}/>
           <input type="date" name='beginLine' value={beginLine} onChange={onInputChange}/>
           <input type="date" name='deadLine' value={deadLine} onChange={onInputChange}/>
           <div className={styles.sprintsModalButtons}>

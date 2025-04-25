@@ -39,7 +39,7 @@ export const CreateUpdateTask:FC<ICreateUpdateTask> = ({modalStatus}) => {
     
       const handleUpdate=async()=>{
         try{
-          const data={id:activeTask!.id,title,description,deadLine,state:activeTask?.state}
+          const data={_id:activeTask!._id,title,description,deadLine,state:activeTask?.state}
           await updateTask(data);
         }catch(err){
           console.error(err);

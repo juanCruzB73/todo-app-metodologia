@@ -12,6 +12,7 @@ import { sprintStore } from '../../../store/SprintStore';
 import { ISprint } from '../../../types/pop-ups/sprints/ISprint';
 import { getSprintById, updateSprint } from '../../../http/sprints';
 import Swal from 'sweetalert2';
+import { addTask } from '../../../http/tasks';
 
 interface IBacklogCard{
   backlog:Itask
@@ -25,6 +26,7 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
   const setChangePopUpStatus = popUpStore((state) => (state.setChangePopUpStatus));
   const setActiveBacklogs = backlogStore((state) => (state.setActiveBacklogTasks));
   const sprints = sprintStore((state) => (state.sprints));
+  const setActiveSprint = sprintStore((state) => (state.setActiveSprint));
 
   const handleTogglePopUp = (popUpName: string) => {
     setChangePopUpStatus(popUpName); 
@@ -50,15 +52,12 @@ export const BacklogCard:FC<IBacklogCard> = ({backlog}) => {
   
 
   const handleMoveBacklog=async(sprintId:string)=>{
-    const sprint=await getSprintById(sprintId);
-    appenBacklog(sprint)
-    await updateSprint(sprint[0]);
-    backlog._id&&await deleteBacklog(backlog._id);
+    await getSprintById(sprintId);
+    await addTask(backlog)
+    //await updateSprint(sprint);
+    await deleteBacklog(backlog._id);
   }
-  const appenBacklog=(sprint:ISprint[])=>{
-    sprint[0].tasks.push(backlog);
-    return sprint;
-  }
+  
 
   const handleSelectOption=async(event:React.ChangeEvent<HTMLSelectElement>)=>{
     const value=event.target.value;

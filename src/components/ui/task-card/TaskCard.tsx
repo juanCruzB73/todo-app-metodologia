@@ -54,8 +54,8 @@ export const TaskCard:FC<ITaskCard> = ({task}) => {
     };
 
     const handleMoveToBacklog=async()=>{
-        await addBacklog(task)
-        await deleteTask(task._id)
+        await addBacklog({title:task.title,description:task.description,state:task.state,deadLine:task.deadLine})
+        if(task._id)await deleteTask(task._id)
     };
   return (
     <div className={styles.taskCardContainer}>

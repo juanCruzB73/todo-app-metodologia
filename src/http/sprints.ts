@@ -1,7 +1,5 @@
 import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { sprintStore } from "../store/SprintStore";
-import { addSprintController, deleteSprintController,updateSprintController } from "../data/sprintsController";
-
 
 const API_URL = import.meta.env.VITE_SPRINTS_URL;
 

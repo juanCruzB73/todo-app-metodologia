@@ -31,7 +31,8 @@
     height: 70%;
     flex-direction: column;
 }
-.modalForm input{
+
+.input-field-sprint{
     margin-bottom: 1rem;
     padding: .8rem;
     border: none;
@@ -48,4 +49,15 @@
     width: 40%;
     align-self: center;
     border-radius: .6rem;
+}
+.modalForm .input-field-sprintinput-error {
+    border: 1px solid red !important;
+    margin-bottom: 1rem;
+    padding: .8rem;
+    border: none;
+    border-radius: .6rem;
+}
+.error-message{
+    color: red;
+
 }

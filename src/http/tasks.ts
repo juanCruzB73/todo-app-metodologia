@@ -1,7 +1,5 @@
-import { addTaskController, deleteTaskController, getTaskController, updateTaskController } from "../data/taskController";
 import { sprintStore } from "../store/SprintStore";
 import { taskStore } from "../store/TaskStore";
-import { ISprint } from "../types/pop-ups/sprints/ISprint";
 import { Itask } from "../types/pop-ups/sprints/ITask";
 
 const API_URL = import.meta.env.VITE_SPRINTS_URL;
